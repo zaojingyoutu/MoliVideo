@@ -1,74 +1,77 @@
 <template>
-  <a-list :grid="{ gutter: 20, column: 8 }" size="small" :data-source="listData">
-    <template #footer>
-      <div>
-        <b>ant design vue</b>
-        footer part
-      </div>
-    </template>
-    <template #renderItem="{ item }">
-      <a-list-item key="item.title">
-        <template #extra>        
-        </template>
-        <div style="width: 40;height: 60;">
-          <div >
-            <img
-            width="120"
-            alt="logo"
-            :src="item.vod_pic"
-          />
-          </div>         
-          <div>
-            <router-link :to="{path:'/play',query:{id: item.vod_id}}">
-              {{ item.vod_name }}
-            </router-link>
-            
-          </div>
-        </div>
-      </a-list-item>
-    </template>
-  </a-list>
-</template>
-<script lang="ts">
-import { defineComponent,ref } from 'vue';
-import {list} from '@/api/test1'
-import { any, string } from 'vue-types';
+  <div style="height: 40%;">
+     <iframe :src="play_url.url"  marginwidth="0" marginheight="0" border="0" scrolling="no" frameborder="0" topmargin="0" width="100%" height="100%" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen=" msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+  </div>
+    <div>
+        <a-list :data-source="modelRef.movue.vod_play_url">
+            <template #renderItem="{ item }"><a-button @click="play(item)">{{ item.name }}</a-button>
+            </template>
+            </a-list>
+    </div>
 
+</template>
+
+<script lang="ts">
+import { defineComponent,reactive } from 'vue';
+import { useRouter } from "vue-router";
+import { any } from 'vue-types';
 
 
 export default defineComponent({
-  components: {
-  },
-  setup() {
-    let listData: any= ref();
-  const a:any=fetch(" http://127.0.0.1:8000/api/movie/?name=狂飙", {
+
+    setup(){
+        const  id= useRouter().currentRoute.value.query.id;
+        const modelRef = reactive({
+            "movue": any
+        })
+
+        let allURL;
+// if (process.env.VUE_APP_FLAG == "dev") {
+//   allURL = process.env.VUE_APP_BASEURL;
+// } else{
+//   allURL = "https://www.zaojingyoutu.top:8000/api/";
+// }
+allURL = "https://www.zaojingyoutu.top:8000/api/"
+    const a:any=fetch( allURL + "movie/?id=" + id, {
   "mode":"cors",
   "method": "GET"
 }).then(response => response.json())
   .then(data =>
           {
-            listData.value = data.data.list
-           
+
+            let movue:any  = data.data.list[0]
+            let vod_play_url_list: any =movue.vod_play_url.split('#')
+            let    collects:any =[]
+            for(let i=0;i<vod_play_url_list.length;i++){
+                let collect:any = vod_play_url_list[i].split('$')
+                // collects[collect[0]] = 'https://vip.zykbf.com/?url='  + collect[1]
+
+                collects.push({"name":collect[0],'url':'https://vip.zykbf.com/?url='  + collect[1]})
+            }
+            movue.vod_play_url = collects
+
+            modelRef.movue = movue
           }
-  
+
   );
+  const play_url = reactive({
+            "url": 'https://vip.zykbf.com/?url='
+        })
+  const play=(value: { url: string; })=>{
+    play_url.url =value.url
+    console.log(value.url )
 
-    
-    const pagination = {
-      onChange: (page: number) => {
-        console.log(page);
-      },
-      pageSize: 3,
-    };
-    
-      
-    
-    return {
-      listData,
-      pagination,
-   
-    };
-  },
-});
+  }
+
+  return{
+    modelRef,
+    play,
+    play_url
+
+  }
+    }
+
+
+
+})
 </script>
-

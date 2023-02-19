@@ -1,6 +1,6 @@
 <template>
   <div style="height: 40%;">
-    <iframe :src="play_url.url"  marginwidth="0" marginheight="0" border="0" scrolling="no" frameborder="0" topmargin="0" width="100%" height="100%" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen=" msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+     <iframe :src="play_url.url"  marginwidth="0" marginheight="0" border="0" scrolling="no" frameborder="0" topmargin="0" width="100%" height="100%" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen=" msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
   </div>
     <div>
         <a-list :data-source="modelRef.movue.vod_play_url">
@@ -26,12 +26,12 @@ export default defineComponent({
         })
 
         let allURL;
-if (process.env.VUE_APP_FLAG == "dev") {
-  allURL = process.env.VUE_APP_BASEURL;
-} else{
-  allURL = "https://www.zaojingyoutu.top:8000/api/";
-}
-
+// if (process.env.VUE_APP_FLAG == "dev") {
+//   allURL = process.env.VUE_APP_BASEURL;
+// } else{
+//   allURL = "https://www.zaojingyoutu.top:8000/api/";
+// }
+allURL = "https://www.zaojingyoutu.top:8000/api/"
     const a:any=fetch( allURL + "movie/?id=" + id, {
   "mode":"cors",
   "method": "GET"

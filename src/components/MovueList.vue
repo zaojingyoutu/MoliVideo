@@ -41,12 +41,12 @@ export default defineComponent({
     let listData: any = ref();
 
     let allURL;
-if (process.env.VUE_APP_FLAG == "dev") {
-  allURL = process.env.VUE_APP_BASEURL;
-} else{
-  allURL = "https://www.zaojingyoutu.top:8000/api/";
-}
-
+// if (process.env.VUE_APP_FLAG == "dev") {
+//   allURL = process.env.VUE_APP_BASEURL;
+// } else{
+//   allURL = "https://www.zaojingyoutu.top:8000/api/";
+// }
+allURL = "https://www.zaojingyoutu.top:8000/api/";
     const a: any = fetch( allURL +"movie/?name="+kw, {
       mode: "cors",
       method: "get",

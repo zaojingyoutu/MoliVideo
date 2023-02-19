@@ -20,12 +20,12 @@
         </a-menu>
       </a-layout-header>
       <a-layout-content :style="{ padding: '0 25px', marginTop: '64px',height:'100%' }">
-        <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">
+        <div :style="{ background: '#fff', padding: '24px', minHeight: '100%' }">
           <router-view></router-view>
         </div>
       </a-layout-content>
-      <a-layout-footer :style="{ textAlign: 'center' ,height:'100%'}">
-        
+      <a-layout-footer :style="{ textAlign: 'center'}">
+
       </a-layout-footer>
       本站所有内容均来自互联网，如果本站部分内容侵犯您的版权请告知，在必要证明文件下我们第一时间撤除
     </a-layout>
