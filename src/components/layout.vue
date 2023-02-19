@@ -37,7 +37,7 @@
         const value = ref<string>('');
         const query=()=>{
           // value.value=''
-          window.location.href="/movue?wd=" + value.value
+          window.location.href="/MoliVideo/#/movue?wd=" + value.value
       
 
 
