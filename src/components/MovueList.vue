@@ -64,6 +64,14 @@ export default defineComponent({
       kw
     };
   },
+  watch:{
+    $route(to, from) {
+//监听路由是否变化
+if (to.query.wd != from.query.wd) {
+location. reload()
+}
+},
+  }
 });
 </script>
 
