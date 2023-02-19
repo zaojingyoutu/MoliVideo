@@ -3,8 +3,8 @@
       <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
         <div class="logo" />
         <div class="search" style="float: left;height: 68px;" >
-            <a-input v-model:value="value" placeholder="收索" style="width: 200px;"/>
-            <a-button @click="query">收索</a-button>
+            <a-input v-model:value="value" placeholder="搜索" style="width: 200px;"/>
+            <a-button @click="query">搜索</a-button>
             <!-- <router-link :to="{ path: '/movue', query: { wd: value } }" ></router-link> -->
         </div>
         
