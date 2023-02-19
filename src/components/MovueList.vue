@@ -42,7 +42,7 @@ export default defineComponent({
       kw = 'all'
     }
     let listData: any = ref();
-    const a: any = fetch(" http://127.0.0.1:8000/api/movie/?name="+kw, {
+    const a: any = fetch(" https://www.zaojingyoutu.top:8000/api/movie/?name="+kw, {
       mode: "cors",
       method: "get",
     })

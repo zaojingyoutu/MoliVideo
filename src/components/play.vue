@@ -23,7 +23,7 @@ export default defineComponent({
         const modelRef = reactive({
             "movue": any
         })
-    const a:any=fetch(" http://127.0.0.1:8000/api/movie/?id=" + id, {
+    const a:any=fetch(" https://www.zaojingyoutu.top:8000/api/movie/?id=" + id, {
   "mode":"cors",
   "method": "GET"
 }).then(response => response.json())
