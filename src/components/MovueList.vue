@@ -1,21 +1,18 @@
 <template>
   <a-list 
-  :grid="{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3, xxxl: 2 }"
+  :grid="{ gutter: 16, xs: 2, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3, xxxl: 2 }"
     size="small"
     :data-source="listData"
   >
     <template #footer>
-      <div>
-        <b>ant design vue</b>
-        footer part
-      </div>
     </template>
     <template #renderItem="{ item }">
       <a-list-item key="item.title">
         <template #extra> </template>
         <div style="width: 40; height: 60">
           <div>
-            <img width="120" alt="logo" :src="item.vod_pic" />
+            <img v-if="item.vod_pic" width="120" alt="logo" :src="item.vod_pic" />
+            <img v-else width="120" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
           </div>
           <div>
             <router-link :to="{ path: '/play', query: { id: item.vod_id } }">
@@ -42,7 +39,15 @@ export default defineComponent({
       kw = 'all'
     }
     let listData: any = ref();
-    const a: any = fetch(" https://www.zaojingyoutu.top:8000/api/movie/?name="+kw, {
+
+    let allURL;
+if (process.env.VUE_APP_FLAG == "dev") {
+  allURL = process.env.VUE_APP_BASEURL;
+} else{
+  allURL = "https://www.zaojingyoutu.top:8000/api/";
+}
+
+    const a: any = fetch( allURL +"movie/?name="+kw, {
       mode: "cors",
       method: "get",
     })

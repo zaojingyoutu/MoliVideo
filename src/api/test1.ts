@@ -1,6 +1,5 @@
 // api/user.ts
-import {Axios} from '@/utils/axios'
-const base = ''
+
 
 export function list() {
     return Axios({

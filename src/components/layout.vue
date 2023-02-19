@@ -1,5 +1,5 @@
 <template>
-    <a-layout>
+    <a-layout style="height: 950px;">
       <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
         <div class="logo" />
         <div class="search" style="float: left;height: 68px;" >
@@ -19,14 +19,15 @@
           <a-menu-item key="3">动漫</a-menu-item>
         </a-menu>
       </a-layout-header>
-      <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
+      <a-layout-content :style="{ padding: '0 25px', marginTop: '64px',height:'100%' }">
         <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">
           <router-view></router-view>
         </div>
       </a-layout-content>
-      <a-layout-footer :style="{ textAlign: 'center' }">
-        本站所有内容均来自互联网，如果本站部分内容侵犯您的版权请告知，在必要证明文件下我们第一时间撤除
+      <a-layout-footer :style="{ textAlign: 'center' ,height:'100%'}">
+        
       </a-layout-footer>
+      本站所有内容均来自互联网，如果本站部分内容侵犯您的版权请告知，在必要证明文件下我们第一时间撤除
     </a-layout>
   </template>
   <script lang="ts">

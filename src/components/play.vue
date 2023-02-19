@@ -16,6 +16,7 @@ import { defineComponent,reactive } from 'vue';
 import { useRouter } from "vue-router";
 import { any } from 'vue-types';
 
+
 export default defineComponent({
 
     setup(){
@@ -23,7 +24,15 @@ export default defineComponent({
         const modelRef = reactive({
             "movue": any
         })
-    const a:any=fetch(" https://www.zaojingyoutu.top:8000/api/movie/?id=" + id, {
+
+        let allURL;
+if (process.env.VUE_APP_FLAG == "dev") {
+  allURL = process.env.VUE_APP_BASEURL;
+} else{
+  allURL = "https://www.zaojingyoutu.top:8000/api/";
+}
+
+    const a:any=fetch( allURL + "movie/?id=" + id, {
   "mode":"cors",
   "method": "GET"
 }).then(response => response.json())
