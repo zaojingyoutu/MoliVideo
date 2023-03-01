@@ -4,7 +4,11 @@
   </div>
     <div>
         <a-list :data-source="modelRef.movue.vod_play_url">
-            <template #renderItem="{ item }"><a-button @click="play(item)">{{ item.name }}</a-button>
+            <template #renderItem="{ item }">
+<!--                <a-button  @click="play(item)">{{ item.name }}</a-button>-->
+                <a-radio-group v-model:value="value1" button-style="solid">
+                    <a-radio-button :value="item.name" @click="play(item)">{{ item.name }}</a-radio-button>
+                </a-radio-group>
             </template>
             </a-list>
     </div>
@@ -12,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,reactive } from 'vue';
+import { defineComponent,reactive,ref } from 'vue';
 import { useRouter } from "vue-router";
 import { any } from 'vue-types';
 
@@ -57,16 +61,17 @@ allURL = "https://www.zaojingyoutu.top:8000/api/"
   const play_url = reactive({
             "url": 'https://vip.zykbf.com/?url='
         })
-  const play=(value: { url: string; })=>{
+
+  const play=(value: { url: string; name:string})=>{
     play_url.url =value.url
-    console.log(value.url )
-
+      value1.value =value.name
   }
-
+const value1 = ref<string>()
   return{
     modelRef,
     play,
-    play_url
+    play_url,
+      value1
 
   }
     }
